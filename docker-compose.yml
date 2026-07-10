@@ -1,0 +1,11 @@
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: my-nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./html:/usr/share/nginx/html:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
