@@ -18,7 +18,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd ~/my-nginx-project
+            cd ~/rzhaka_nginx
             git pull origin main
             docker compose down
             docker compose up -d --build
