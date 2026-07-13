@@ -1,12 +1,12 @@
 services:
   nginx:
-    image: nginx:stable-alpine    # ← готовый образ, не надо собирать
+    image: nginx:stable-alpine
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./html:/usr/share/nginx/html:ro    # ← ваша папка с фронтендом
+      - ./default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./html:/usr/share/nginx/html:ro 
       - certbot-www:/var/www/certbot
       - certbot-conf:/etc/letsencrypt
     depends_on:
