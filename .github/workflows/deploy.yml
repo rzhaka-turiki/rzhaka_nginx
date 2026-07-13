@@ -23,3 +23,14 @@ jobs:
             git pull origin master
             docker compose down
             docker compose up -d --build
+            
+            sleep 10
+            
+            docker compose run --rm certbot certonly \
+              --webroot --webroot-path=/var/www/certbot \
+              --email ${{ secrets.LETSENCRYPT_EMAIL }} \
+              --agree-tos --no-eff-email \
+              --force-renewal \
+              -d ${{ secrets.DOMAIN_NAME }} || true
+            
+            docker compose exec nginx nginx -s reload
